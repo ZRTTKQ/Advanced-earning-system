@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Website Embedding System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-globe"></i> Advanced Embed System</h1>
+                <div class="header-controls">
+                    <button id="adminBtn" class="btn-primary">
+                        <i class="fas fa-cog"></i> Admin Panel
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Embed URL Input Section -->
+            <div class="embed-section">
+                <div class="input-group">
+                    <input type="url" id="embedUrl" placeholder="Enter any website URL to embed..." class="url-input">
+                    <button id="embedBtn" class="btn-embed">
+                        <i class="fas fa-external-link-alt"></i> Embed Website
+                    </button>
+                </div>
+                
+                <!-- Quick Access Buttons -->
+                <div class="quick-access">
+                    <h3>Quick Embed Options:</h3>
+                    <div class="quick-buttons">
+                        <button class="quick-btn" data-url="https://youtube.com">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </button>
+                        <button class="quick-btn" data-url="https://github.com">
+                            <i class="fab fa-github"></i> GitHub
+                        </button>
+                        <button class="quick-btn" data-url="https://twitter.com">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="quick-btn" data-url="https://facebook.com">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </button>
+                        <button class="quick-btn" data-url="https://instagram.com">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="quick-btn" data-url="https://reddit.com">
+                            <i class="fab fa-reddit"></i> Reddit
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Embedded Content Area -->
+            <div class="embed-container">
+                <div class="embed-header">
+                    <span id="embedTitle">No website embedded</span>
+                    <div class="embed-controls">
+                        <button id="refreshBtn" class="control-btn" title="Refresh">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                        <button id="fullscreenBtn" class="control-btn" title="Fullscreen">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button id="closeBtn" class="control-btn" title="Close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="embedFrame" class="embed-frame">
+                    <div class="placeholder">
+                        <i class="fas fa-globe-americas"></i>
+                        <h2>Advanced Website Embedding</h2>
+                        <p>Enter any website URL above to embed it with full functionality</p>
+                        <div class="features">
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>100% Website Functionality</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Real-time Embedding</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Admin Panel Control</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Admin Panel Modal -->
+        <div id="adminModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-cog"></i> Admin Panel</h2>
+                    <span class="close" id="closeModal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="admin-tabs">
+                        <button class="tab-btn active" data-tab="general">General Settings</button>
+                        <button class="tab-btn" data-tab="security">Security</button>
+                        <button class="tab-btn" data-tab="embed">Embed Settings</button>
+                        <button class="tab-btn" data-tab="history">History</button>
+                    </div>
+
+                    <!-- General Settings Tab -->
+                    <div id="general" class="tab-content active">
+                        <h3>General Settings</h3>
+                        <div class="setting-group">
+                            <label for="maxEmbeds">Maximum Simultaneous Embeds:</label>
+                            <input type="number" id="maxEmbeds" value="1" min="1" max="10">
+                        </div>
+                        <div class="setting-group">
+                            <label for="defaultTimeout">Default Timeout (seconds):</label>
+                            <input type="number" id="defaultTimeout" value="30" min="5" max="300">
+                        </div>
+                        <div class="setting-group">
+                            <label>
+                                <input type="checkbox" id="enableLogging" checked>
+                                Enable Activity Logging
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Security Settings Tab -->
+                    <div id="security" class="tab-content">
+                        <h3>Security Settings</h3>
+                        <div class="setting-group">
+                            <label>
+                                <input type="checkbox" id="allowHttps" checked>
+                                Allow HTTPS Only
+                            </label>
+                        </div>
+                        <div class="setting-group">
+                            <label for="blockedDomains">Blocked Domains (one per line):</label>
+                            <textarea id="blockedDomains" rows="5" placeholder="example.com&#10;malicious-site.com"></textarea>
+                        </div>
+                        <div class="setting-group">
+                            <label for="allowedDomains">Allowed Domains (leave empty for all):</label>
+                            <textarea id="allowedDomains" rows="5" placeholder="youtube.com&#10;github.com&#10;facebook.com"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Embed Settings Tab -->
+                    <div id="embed" class="tab-content">
+                        <h3>Embed Settings</h3>
+                        <div class="setting-group">
+                            <label>
+                                <input type="checkbox" id="enableSandbox" checked>
+                                Enable Sandbox Security
+                            </label>
+                        </div>
+                        <div class="setting-group">
+                            <label>
+                                <input type="checkbox" id="allowFullscreen" checked>
+                                Allow Fullscreen Mode
+                            </label>
+                        </div>
+                        <div class="setting-group">
+                            <label>
+                                <input type="checkbox" id="allowAutoplay">
+                                Allow Autoplay (for media)
+                            </label>
+                        </div>
+                        <div class="setting-group">
+                            <label>
+                                <input type="checkbox" id="allowCamera">
+                                Allow Camera Access
+                            </label>
+                        </div>
+                        <div class="setting-group">
+                            <label>
+                                <input type="checkbox" id="allowMicrophone">
+                                Allow Microphone Access
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- History Tab -->
+                    <div id="history" class="tab-content">
+                        <h3>Embed History</h3>
+                        <div class="history-controls">
+                            <button id="clearHistory" class="btn-danger">Clear History</button>
+                            <button id="exportHistory" class="btn-secondary">Export History</button>
+                        </div>
+                        <div id="historyList" class="history-list">
+                            <!-- History items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="saveSettings" class="btn-primary">Save Settings</button>
+                    <button id="resetSettings" class="btn-secondary">Reset to Default</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Loading embedded website...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
